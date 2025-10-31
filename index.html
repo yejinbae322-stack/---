@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하령의 꽃 - 붉은 봄</title>
+<style>
+  body {
+    font-family: "돋움", sans-serif;
+    background-color: #ffe6f0;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  #gameContainer {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    border: 3px solid #ffb6c1;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 150, 150, 0.3);
+  }
+  button {
+    background-color: #ffb6c1;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #ff92a1;
+  }
+  #dialogue {
+    margin: 30px 0;
+    min-height: 100px;
+    white-space: pre-line;
+  }
+</style>
+</head>
+<body>
+  <div id="gameContainer">
+    <h1>🌸 하령의 꽃 - 붉은 봄 🌸</h1>
+    <div id="menu">
+      <button onclick="startGame()">▶ 플레이</button>
+      <button onclick="showTutorial()">튜토리얼</button>
+    </div>
+    <div id="dialogue" style="display:none;"></div>
+    <button id="nextBtn" style="display:none;" onclick="nextLine()">다음</button>
+  </div>
+
+<script>
+  const tutorialText = [
+    "튜토리얼 🌸",
+    "화면을 클릭하면 대사가 넘어갑니다.",
+    "선택지가 나오면 원하는 답을 클릭하세요.",
+    "그럼, 하령이의 이야기를 시작해볼까요?"
+  ];
+
+  const storyText = [
+    "봄의 공기가 따뜻하게 감도는 아침.",
+    "하령: 오늘은 새 학기 첫날이야... 너무 떨린다.",
+    "교실 문을 열자, 반장 기현이와 눈이 마주친다.",
+    "기현: 어? 우리 또 같은 반이네.",
+    "하령: 아... 그러게, 반가워! (심장이 두근거린다)",
+    "쉬는 시간, 하령은 우연히 미술실로 향한다.",
+    "지후: (조용히 스케치하며) ...넌 봄 같네.",
+    "하령: ...응?",
+    "그의 시선이 묘하게 따뜻하면서도 서늘하다.",
+    "그날 이후, 하령의 평범했던 봄날은 조금씩 뒤틀리기 시작한다..."
+  ];
+
+  let textIndex = 0;
+  let currentText = [];
+
+  function showTutorial() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("dialogue").style.display = "block";
+    document.getElementById("nextBtn").style.display = "block";
+    currentText = tutorialText;
+    textIndex = 0;
+    showLine();
+  }
+
+  function startGame() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("dialogue").style.display = "block";
+    document.getElementById("nextBtn").style.display = "block";
+    currentText = storyText;
+    textIndex = 0;
+    showLine();
+  }
+
+  function nextLine() {
+    textIndex++;
+    if (textIndex < currentText.length) {
+      showLine();
+    } else {
+      document.getElementById("dialogue").innerText = "🌸 1화 끝 🌸";
+      document.getElementById("nextBtn").style.display = "none";
+    }
+  }
+
+  function showLine() {
+    document.getElementById("dialogue").innerText = currentText[textIndex];
+  }
+</script>
+</body>
+</html>
+
